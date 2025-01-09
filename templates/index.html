@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block title %}Weather{% endblock %}
+
+{% block content %}
+    <div id="add-city" class="modal">
+      <div class="modal-content">
+        <div class="close" onclick="close_modal()">&times;</div>
+        <h2>Add new city</h2>
+        <form action="/cities/add" method="post">
+          <input type="text" name="name" placeholder="City Name" required>
+          <input type="number" step="0.01" name="latitude" placeholder="Latitude" required>
+          <input type="number" step="0.01" name="longitude" placeholder="Longitude" required>
+          <button id="add-city-button" class="add-city-button" type="submit">Add City</button>
+        </form>
+      </div>
+    </div>
+
+    <h1>Welcome, {{ user.username }}!</h1>
+    <div class="controls">
+      <button class="update-button" onclick="update_weather()">Update Weather</button>
+      <button id="add-button" class="add-button" onclick="open_modal()">Add City</button>
+    </div>
+    <table>
+      <colgroup>
+        <col class="right-align">
+        <col class="right-align">
+        <col class="right-align">
+        <col class="right-align">
+        <col class="center-align">
+      </colgroup>
+      <thead>
+        <tr>
+          <th width="40%">Name</th>
+          <th width="20%">Weather</th>
+          <th width="20%">Lat</th>
+          <th width="20%">Lon</th>
+          <th width="20%"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for city in cities %}
+        <tr>
+          <td>{{ city.name }}</td>
+          <td>{{ city.temperature if city.temperature else "No data" }} °C</td>
+          <td>{{ city.latitude }}</td>
+          <td>{{ city.longitude }}</td>
+          <td><button class="delete-button" onclick="delete_city({{ city.id }})">Delete</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <script>
+      function open_modal() {
+        document.getElementById("add-city").style.display = "block";
+        document.getElementById("add-button").style.display = "none";
+      }
+
+      function close_modal() {
+        document.getElementById("add-city").style.display = "none";
+        document.getElementById("add-button").style.display = "block";
+      }
+
+      async function update_weather() {
+        try {
+          const response = await fetch("/cities/update", { method: "POST" });
+          if (response.ok) {
+            location.reload();
+          } else {
+            console.error("Failed to update weather", await response.text());
+            alert("Failed to update weather. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error updating weather", error);
+          alert("An error occurred while updating the weather.");
+        }
+      }
+
+      async function add_city() {
+        try {
+          const response = await fetch("/cities/update", { method: "POST" });
+          if (response.ok) {
+            location.reload();
+          } else {
+            console.error("Failed to update weather", await response.text());
+            alert("Failed to update weather. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error updating weather", error);
+          alert("An error occurred while updating the weather.");
+        }
+      }
+
+
+      async function delete_city(id) {
+        try {
+          const response = await fetch("/cities/remove/" + id, { method: "POST" });
+          if (response.ok) {
+            location.reload();
+          } else {
+            console.error("Failed to delete city", await response.text());
+            alert("Failed to update city. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error deleting city", error);
+          alert("An error occurred while deleting the delete_city.");
+        }
+      }
+    </script>
+{% endblock %}

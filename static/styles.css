@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: black;
+  color: white;
+  height: 50px;
+  padding: 0 20vw;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+main {
+  padding: 0 20vw;
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+p, button, input {
+  font-size: 16px;
+}
+
+button {
+  text-align: center;
+  width: 150px;
+  min-width: 150px;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-width: 150px;
+}
+
+table {
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+th:nth-child(1), td:nth-child(1) {
+  text-align: left;
+}
+
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3),
+th:nth-child(4), td:nth-child(4),
+th:nth-child(5), td:nth-child(5) {
+  text-align: right;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+button.controls {
+  display: flex;
+  justify-content: space-between;
+}
+
+button.add-button {
+  background-color: black;
+}
+
+button.update-button {
+  background-color: blue;
+}
+
+button.delete-button {
+  background-color: red;
+}
+
+button.login-button,
+button.register-button,
+button.add-city-button {
+  background-color: black;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modal {
+  display: none;
+}
+
+.close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.link {
+  text-align: center;
+  padding-top: 20px;
+}
