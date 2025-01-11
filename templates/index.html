@@ -18,17 +18,11 @@
 
     <h1>Welcome, {{ user.username }}!</h1>
     <div class="controls">
-      <button class="update-button" onclick="update_weather()">Update Weather</button>
+      <button class="update-button" onclick="update_weather()">Update</button>
+      <button class="reset-button" onclick="reset_cities()">Reset</button>
       <button id="add-button" class="add-button" onclick="open_modal()">Add City</button>
     </div>
     <table>
-      <colgroup>
-        <col class="right-align">
-        <col class="right-align">
-        <col class="right-align">
-        <col class="right-align">
-        <col class="center-align">
-      </colgroup>
       <thead>
         <tr>
           <th width="40%">Name</th>
@@ -76,6 +70,21 @@
         }
       }
 
+      async function reset_cities() {
+        try {
+          const response = await fetch("/cities/reset", { method: "POST" });
+          if (response.ok) {
+            location.reload();
+          } else {
+            console.error("Failed to reset cities", await response.text());
+            alert("Failed to reset cities. Please try again later.");
+          }
+        } catch (error) {
+          console.error("Error resetting cities", error);
+          alert("An error occurred while resetting cities.");
+        }
+      }
+
       async function add_city() {
         try {
           const response = await fetch("/cities/update", { method: "POST" });
@@ -90,7 +99,6 @@
           alert("An error occurred while updating the weather.");
         }
       }
-
 
       async function delete_city(id) {
         try {

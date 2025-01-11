@@ -47,7 +47,6 @@ p, button, input {
 button {
   text-align: center;
   width: 150px;
-  min-width: 150px;
   color: white;
   border: none;
   border-radius: 8px;
@@ -106,6 +105,10 @@ button.update-button {
   background-color: blue;
 }
 
+button.reset-button {
+  background-color: gray;
+}
+
 button.delete-button {
   background-color: red;
 }
@@ -137,4 +140,15 @@ form {
 .link {
   text-align: center;
   padding-top: 20px;
+}
+
+@media (max-width: 1000px) {
+  button {
+    width: 80px;
+  }
+  
+  th:nth-child(3), td:nth-child(3),
+  th:nth-child(4), td:nth-child(4) {
+    display: none;
+  }
 }
